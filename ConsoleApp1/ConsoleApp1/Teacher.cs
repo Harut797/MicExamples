@@ -12,6 +12,8 @@ namespace ConsoleApp6
         public string surname;
         public int number;
         public string specialty;
+        //public string[] teachers = new string[10];
+        public Student[] students = new Student[10];
 
     }
 }

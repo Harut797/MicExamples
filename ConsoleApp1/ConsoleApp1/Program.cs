@@ -11,16 +11,8 @@ namespace ConsoleApp6
     {
         static void Main(string[] args)
         {
-            Student[] student = new Student[50];
+            Student[] student = new Student[51];
             Teacher[] teacher = new Teacher[5];
-            for (int i = 0; i < teacher.Length; i++)
-            {
-                teacher[i] = new Teacher();
-                teacher[i].name = randomNames();
-                teacher[i].surname = randomSurNames();
-                teacher[i].number = randomNumbers();
-                teacher[i].specialty = randomSpecs();
-            }
             for (int i = 0; i < student.Length; i++)
             {
                 student[i] = new Student();
@@ -28,8 +20,29 @@ namespace ConsoleApp6
                 student[i].surname = randomSurNames();
                 student[i].email = randomEmails();
                 student[i].setAge(randomAges());
+
+                //teacher[0].students[0].name = "Test";
                 Thread.Sleep(20);
             }
+            for (int i = 0; i < teacher.Length; i++)
+            {
+                teacher[i] = new Teacher();
+                teacher[i].name = randomNames();
+                teacher[i].surname = randomSurNames();
+                teacher[i].number = randomNumbers();
+                teacher[i].specialty = randomSpecs();
+                Thread.Sleep(20);
+                for (int k = 0; k < 10; k++)
+                {
+                    teacher[i].students[k] = new Student();
+                    teacher[i].students[k].name = student[i+k].name;
+                    teacher[i].students[k].surname = student[i+k].surname;
+                    teacher[i].students[k].email = student[i+k].email;
+                    //teacher[i].students[k].setAge(student[i].getAge().ToString());
+                }
+            }
+            
+            
             Console.WriteLine("Name" + "\t" + "Surname" + "\t" + "\t" + "Email" + "\t" + "\t" + "\t" + "Age");
             for (int i = 0; i < 50; i++)
             {
@@ -37,6 +50,19 @@ namespace ConsoleApp6
                 Console.WriteLine("Student N~" + i);
                 Console.WriteLine(student[i].name + "\t" + student[i].surname + "\t" + student[i].email + "\t" + student[i].getAge());
             }
+            Console.WriteLine("--------------Teachers----------------");
+            for (int i = 0; i < teacher.Length; i++)
+            {
+                Console.WriteLine(teacher[i].name + "\t" + teacher[i].surname + "\t" + teacher[i].number + "\t" + teacher[i].specialty);
+                Thread.Sleep(20);
+            }
+            Console.WriteLine("--------------Teacher N`1 students----------------");
+            for (int i = 0; i < teacher[0].students.Length; i++)
+            {
+                Console.WriteLine(teacher[0].students[i].name + "\t" + teacher[0].students[i].surname + "\t" + teacher[0].students[i].email);
+                Thread.Sleep(20);
+            }
+
         }
         static string randomNames()
         {
@@ -82,7 +108,6 @@ namespace ConsoleApp6
             Random rnd = new Random();
             int randNumber = rnd.Next(0, 4);
             return randNumber;
-            //Test
         }
         static string randomSpecs()
         {
@@ -93,8 +118,6 @@ namespace ConsoleApp6
             specs[2] = "JavaScript";
             specs[3] = "PHP";
             return specs[rand];
-            //Test
-            Console.WriteLine("Hello);
         }
     }
 }
