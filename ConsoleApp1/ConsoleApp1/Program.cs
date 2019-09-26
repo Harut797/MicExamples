@@ -22,8 +22,9 @@ namespace ConsoleApp6
                 student[i].setAge(randomAges());
 
                 //teacher[0].students[0].name = "Test";
-                Thread.Sleep(20);
+                Thread.Sleep(40);
             }
+            int test = 1;
             for (int i = 0; i < teacher.Length; i++)
             {
                 teacher[i] = new Teacher();
@@ -32,35 +33,42 @@ namespace ConsoleApp6
                 teacher[i].number = randomNumbers();
                 teacher[i].specialty = randomSpecs();
                 Thread.Sleep(20);
+                
                 for (int k = 0; k < 10; k++)
                 {
                     teacher[i].students[k] = new Student();
-                    teacher[i].students[k].name = student[i+k].name;
-                    teacher[i].students[k].surname = student[i+k].surname;
-                    teacher[i].students[k].email = student[i+k].email;
+                    teacher[i].students[k].name = student[test].name;
+                    teacher[i].students[k].surname = student[test].surname;
+                    teacher[i].students[k].email = student[test].email;
+                    test++;
                     //teacher[i].students[k].setAge(student[i].getAge().ToString());
                 }
             }
             
             
             Console.WriteLine("Name" + "\t" + "Surname" + "\t" + "\t" + "Email" + "\t" + "\t" + "\t" + "Age");
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < student.Length; i++)
             {
 
-                Console.WriteLine("Student N~" + i);
+                Console.WriteLine(" \t \t \t Student N~" + i);
                 Console.WriteLine(student[i].name + "\t" + student[i].surname + "\t" + student[i].email + "\t" + student[i].getAge());
             }
             Console.WriteLine("--------------Teachers----------------");
             for (int i = 0; i < teacher.Length; i++)
             {
+                Console.WriteLine(" \t \t \t Teacher N~" + i);
                 Console.WriteLine(teacher[i].name + "\t" + teacher[i].surname + "\t" + teacher[i].number + "\t" + teacher[i].specialty);
-                Thread.Sleep(20);
             }
-            Console.WriteLine("--------------Teacher N`1 students----------------");
-            for (int i = 0; i < teacher[0].students.Length; i++)
+            for (int j = 0; j < 5; j++)
             {
-                Console.WriteLine(teacher[0].students[i].name + "\t" + teacher[0].students[i].surname + "\t" + teacher[0].students[i].email);
-                Thread.Sleep(20);
+                
+                Console.WriteLine($"--------------Teacher N`{j} students----------------");
+                for (int i = 0; i < teacher[j].students.Length; i++)
+                {
+                    Console.WriteLine(teacher[j].students[i].name + "\t" + teacher[j].students[i].surname + "\t" + teacher[j].students[i].email);
+                    Thread.Sleep(20);
+                }
+
             }
 
         }
@@ -69,7 +77,7 @@ namespace ConsoleApp6
             Random rnd = new Random();
 
             int randNamesNumber;
-            randNamesNumber = rnd.Next(1, 100);
+            randNamesNumber = rnd.Next(10000, 99999);
             string randNames = $"Name{randNamesNumber}";
             return randNames;
         }
@@ -78,7 +86,7 @@ namespace ConsoleApp6
             Random rnd = new Random();
 
             int randSurNamesNumber;
-            randSurNamesNumber = rnd.Next(1, 100);
+            randSurNamesNumber = rnd.Next(10000, 99999);
             string randSurNames = $"Surname{randSurNamesNumber}";
             return randSurNames;
         }
@@ -87,14 +95,14 @@ namespace ConsoleApp6
             Random rnd = new Random();
 
             int randEmailNumber;
-            randEmailNumber = rnd.Next(1, 10000000);
+            randEmailNumber = rnd.Next(10000000, 99999999);
             string randEmails = $"{randEmailNumber}@gmail.com";
             return randEmails;
         }
         static int randomAges()
         {
             Random rnd = new Random();
-            int randAge = rnd.Next(1, 100);
+            int randAge = rnd.Next(10, 99);
             return randAge;
         }
         static int randomNumbers()
