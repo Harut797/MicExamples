@@ -29,7 +29,7 @@ namespace ConsoleApp6
                 teacher[i] = new Teacher();
                 teacher[i].name = randomNames();
                 teacher[i].surname = randomSurNames();
-                teacher[i].number = randomNumbers();
+                teacher[i].number =  randomNumbers();
                 teacher[i].specialty = randomSpecs();
                 Thread.Sleep(20);
                 
@@ -53,31 +53,21 @@ namespace ConsoleApp6
                 }
                 
             }
-            Console.WriteLine("Name" + "\t" + "Surname" + "\t" + "\t" + "Email" + "\t" + "\t" + "\t" + "Age");
-            for (int i = 0; i < student.Length; i++)
+            int index = 0;
+            for (int i = 0; i < group.Length; i++)
             {
-
-                Console.WriteLine(" \t \t \t Student N~" + i);
-                Console.WriteLine(student[i].name + "\t" + student[i].surname + "\t" + student[i].email + "\t" + student[i].getAge());
-            }
-            Console.WriteLine("--------------Teachers----------------");
-            for (int i = 0; i < teacher.Length; i++)
-            {
-                Console.WriteLine(" \t \t \t Teacher N~" + i);
-                Console.WriteLine(teacher[i].name + "\t" + teacher[i].surname + "\t" + teacher[i].number + "\t" + teacher[i].specialty);
-            }
-            for (int j = 0; j < 5; j++)
-            {
-                
-                Console.WriteLine($"--------------Teacher N`{j} students----------------");
-                for (int i = 0; i < teacher[j].students.Length; i++)
+                Console.WriteLine($"----------------- Group N {i+1}-----------------");
+                Console.WriteLine($"-------- Teacher  --------");
+                Console.WriteLine(teacher[i].name +"\t"+ teacher[i].surname + "\t" + teacher[i].number + "\t" + teacher[i].specialty);
+                Console.WriteLine("--------- Students ---------");
+                for (int j = 0; j < teacher[i].students.Length; j++)
                 {
-                    Console.WriteLine(teacher[j].students[i].name + "\t" + teacher[j].students[i].surname + "\t" + teacher[j].students[i].email);
-                    Thread.Sleep(20);
+                    Console.WriteLine(student[index].name + "\t" + student[index].surname + "\t" + student[index].email + "\t");
+                    index++;
                 }
+              
 
             }
-
         }
         static string randomNames()
         {
@@ -115,7 +105,7 @@ namespace ConsoleApp6
         static int randomNumbers()
         {
             Random rnd = new Random();
-            int randNumber = rnd.Next(100000000, 999999999);
+            int randNumber = rnd.Next(10000000, 99999999);
             return randNumber;
         }
         static int randomNumber()
