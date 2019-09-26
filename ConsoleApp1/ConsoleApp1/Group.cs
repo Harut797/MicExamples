@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp6
 {
-    class Teacher
+    class Group
     {
         public string name;
-        public string surname;
-        public int number;
-        public string specialty;
+        public Teacher teachers = new Teacher();
         public Student[] students = new Student[10];
-
     }
 }

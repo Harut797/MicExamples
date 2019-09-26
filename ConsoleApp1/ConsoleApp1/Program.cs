@@ -13,6 +13,7 @@ namespace ConsoleApp6
         {
             Student[] student = new Student[51];
             Teacher[] teacher = new Teacher[5];
+            Group[] group = new Group[5];
             for (int i = 0; i < student.Length; i++)
             {
                 student[i] = new Student();
@@ -20,8 +21,6 @@ namespace ConsoleApp6
                 student[i].surname = randomSurNames();
                 student[i].email = randomEmails();
                 student[i].setAge(randomAges());
-
-                //teacher[0].students[0].name = "Test";
                 Thread.Sleep(40);
             }
             int test = 1;
@@ -41,11 +40,19 @@ namespace ConsoleApp6
                     teacher[i].students[k].surname = student[test].surname;
                     teacher[i].students[k].email = student[test].email;
                     test++;
-                    //teacher[i].students[k].setAge(student[i].getAge().ToString());
                 }
             }
-            
-            
+            for (int i = 0; i < group.Length; i++)
+            {
+                group[i] = new Group();
+                group[i].name = "Group N` " + i;
+                group[i].teachers = teacher[i];
+                for (int j = 0; j < 10; j++)
+                {
+                    group[i].students[j] = teacher[i].students[j];
+                }
+                
+            }
             Console.WriteLine("Name" + "\t" + "Surname" + "\t" + "\t" + "Email" + "\t" + "\t" + "\t" + "Age");
             for (int i = 0; i < student.Length; i++)
             {
